@@ -21,7 +21,7 @@ require 'rspec/rails'
 # require only the support files necessary.
 #
 # Rails.root.glob('spec/support/**/*.rb').sort.each { |f| require f }
-
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each {|f| require f}
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
 begin
@@ -32,6 +32,9 @@ end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
  config.include FactoryBot::Syntax::Methods
+ config.include Devise::Test::ControllerHelpers, type: :controller
+ config.include ControllerHelpers, type: :controller
+ config.include FeatureHelpers, type: :feature
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
   ]

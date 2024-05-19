@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :load_question, only: %i[show edit update destroy]
+  before_action :check_author, only: %i(update destroy)
 
   def index
     @questions = Question.all
@@ -48,5 +49,9 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:title, :body)
+  end
+
+  def check_author
+    redirect_to @question, notice: 'You are not author' unless current_user.is_author?(@question)
   end
 end

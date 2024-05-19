@@ -96,6 +96,24 @@ RSpec.describe QuestionsController, type: :controller do
 				expect(response).to render_template :edit
 			end
 		end
+		 
+		context 'for not the author of the question' do
+		     let(:not_author) { create(:user) }
+
+		     before { login(not_author) }
+		     before { patch :update, params: { id: question, question: {  title: 'title', body: 'body' } } }
+
+		     it 'does not change answer' do
+		       question.reload
+
+		       expect(question.title).to eq 'MyString'
+		       expect(question.body).to eq 'MyText'
+		     end
+
+		     it 're-renders edit view' do
+		       expect(response).to redirect_to question
+		end
+   	   end
 	end
 
 	describe 'DELETE #destroy' do  
@@ -108,5 +126,20 @@ RSpec.describe QuestionsController, type: :controller do
 			delete :destroy, params: { id: question}
 			expect(response).to redirect_to questions_path
 		end
-	end	
+		
+		context 'for not the author of the answer' do
+		    let(:not_author) { create(:user) }
+
+		    before { login(not_author) }
+
+		    it "don't delete the question" do
+		      expect { delete :destroy, params: { id: question } }.to_not change(Question, :count)
+		    end
+
+		    it 'redirects to question' do
+		      delete :destroy, params: { id: question }
+		      expect(response).to redirect_to question_path(question)
+		    end
+		end
+	end
 end

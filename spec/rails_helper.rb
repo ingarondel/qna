@@ -73,4 +73,8 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+
+  config.after(:all) do 
+    FileUtils.rm_rf("#{Rails.root}/tmp/storage")
+  end
 end

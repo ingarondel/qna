@@ -10,10 +10,12 @@ class AnswersController < ApplicationController
 
     if @answer.save
     respond_to do |format|
-      format.html  { render @answer }
+      format.json  { render json: @answer }
     end
     else
-     format.html { render partial: 'shared/errors', locals: {resource: @answer}, status: :unproccessable_entity}
+     format.json do
+        render json: @answer.errors.full_messages, status: :unproccessable_entity
+     end 
     end
   end
 

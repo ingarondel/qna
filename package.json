@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@rails/actioncable": "^7.0.8-3",
+    "@rails/activestorage": "^7.0.8-3",
+    "@rails/ujs": "^7.0.8-3",
+    "@rails/webpacker": "^5.4.4",
+    "bootstrap": "^5.3.3",
+    "jquery": "^3.7.1",
+    "popper.js": "^1.16.1",
+    "turbolinks": "^5.2.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^5.0.4"
+  }
+}

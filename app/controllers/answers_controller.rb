@@ -9,9 +9,11 @@ class AnswersController < ApplicationController
     @answer.user = current_user
 
     if @answer.save
-      redirect_to @question, notice: 'Your answer has been successfully created.'
+    respond_to do |format|
+      format.html  { render @answer }
+    end
     else
-     render :new
+     format.html { render partial: 'shared/errors', locals: {resource: @answer}, status: :unproccessable_entity}
     end
   end
 

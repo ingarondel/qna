@@ -3,8 +3,12 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "activestorage"
 
+require 'action_cable'
 import "cocoon-js-vanilla";
 
 import * as ActiveStorage from "@rails/activestorage"
 ActiveStorage.start()
+
+var App = App || {};
+App.cable = ActionCable.createConsumer();
 

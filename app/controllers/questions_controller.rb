@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
   before_action :load_question, only: %i[show edit update destroy]
   before_action :check_author, only: %i(update destroy)
 
+  after_action :publish_question, only: [:create]
   def index
     @questions = Question.all
   end
@@ -44,6 +45,13 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def publish_question
+    return if @questiom.errors.any?
+    ActionCable.server.broadcast 'questions', ApplicationCoontroller.render(
+      partial: 'questions/question',
+      locals: {question: @question})
+      end
 
   def load_question
     @question = Question.with_attached_files.find(params[:id])

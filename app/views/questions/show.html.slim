@@ -23,6 +23,15 @@
 
   = f.label :files
   = f.file_field :files, multiple: true
+  p Links:
+  p
+    = f.fields_for :links do |l|
+      p
+        = l.label :name, 'Link name'
+        = l.text_field :name
+      p
+        = l.label :url
+        = l.text_field :url
   
   = f.submit 'Answer'
 
@@ -36,3 +45,8 @@ h3= 'Answers:'
         - answer.files.each do |file|
           p
             = link_to file.filename.to_s, url_for(file)
+    .links
+      p Links:
+      ul
+        - @question.links.each do |link|
+          li= link_to link.name, link.url

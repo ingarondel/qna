@@ -3,6 +3,8 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "activestorage"
 
+import "cocoon-js-vanilla";
+
 import * as ActiveStorage from "@rails/activestorage"
 ActiveStorage.start()
 

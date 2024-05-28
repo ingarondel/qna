@@ -22,6 +22,8 @@ gem "turbo-rails"
 
 gem 'cocoon'
 
+gem 'cancancan'
+
 gem 'omniauth'
 gem 'omniauth-github'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]

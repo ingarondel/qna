@@ -27,6 +27,7 @@ class AnswersController < ApplicationController
   end
   
   def update
+    authorize @answer
     if @answer.update(answer_params)
       redirect_to @answer.question
     else

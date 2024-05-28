@@ -23,6 +23,7 @@ gem "turbo-rails"
 gem 'cocoon'
 
 gem 'cancancan'
+gem 'pundit'
 
 gem 'omniauth'
 gem 'omniauth-github'

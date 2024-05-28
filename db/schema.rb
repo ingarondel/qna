@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_28_072420) do
     t.string "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_authorizations_on_provider_and_uid"
     t.index ["user_id"], name: "index_authorizations_on_user_id"
   end
 
@@ -97,5 +98,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_28_072420) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "authorizations", "users"
   add_foreign_key "questions", "users"
 end
